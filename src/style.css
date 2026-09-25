@@ -1,0 +1,165 @@
+:root {
+  color-scheme: dark;
+  --space: #02040a;
+  --panel: rgb(9 14 25 / 0.78);
+  --panel-line: rgb(148 163 184 / 0.16);
+  --text: #d5dce7;
+  --text-dim: #7d8aa0;
+  --accent: #ffc46b;
+  --halo: 0 0 3px var(--space), 0 0 6px var(--space); /* keeps overlay text readable over map labels */
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 50%, #07101f 0%, var(--space) 65%);
+}
+
+#stars,
+#map {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#stars {
+  pointer-events: none;
+}
+
+.brand {
+  position: fixed;
+  top: 16px;
+  left: 18px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-shadow: var(--halo);
+  pointer-events: none;
+  user-select: none;
+}
+
+.brand-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow:
+    0 0 6px 1px rgb(255 196 107 / 0.65),
+    0 0 18px 4px rgb(255 196 107 / 0.25);
+}
+
+.fatal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 24px;
+  color: var(--text);
+  text-align: center;
+}
+
+/* Map controls: dark glass instead of MapLibre's default white. */
+.maplibregl-ctrl-top-right .maplibregl-ctrl {
+  margin: 14px 14px 0 0;
+}
+
+.maplibregl-ctrl-bottom-left .maplibregl-ctrl {
+  margin: 0 0 10px 14px;
+}
+
+/* On narrow screens the attribution opens across the full width, so sit above it. */
+@media (max-width: 640px) {
+  .maplibregl-ctrl-bottom-left {
+    bottom: 26px;
+  }
+}
+
+.maplibregl-ctrl-group {
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: 8px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.maplibregl-ctrl-group:not(:empty) {
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.35);
+}
+
+.maplibregl-ctrl-group button {
+  width: 32px;
+  height: 32px;
+  color: var(--text);
+}
+
+.maplibregl-ctrl-group button + button {
+  border-top: 1px solid var(--panel-line);
+}
+
+.maplibregl-ctrl button:not(:disabled):hover {
+  background-color: rgb(148 163 184 / 0.12);
+}
+
+.maplibregl-ctrl button:not(:disabled):active {
+  background-color: rgb(148 163 184 / 0.2);
+}
+
+/* The built-in icons are dark SVGs: invert them, but keep their hue (e.g. the blue globe). */
+.maplibregl-ctrl button .maplibregl-ctrl-icon {
+  filter: invert(0.88) hue-rotate(180deg);
+}
+
+.view-ctrl svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin: auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.view-ctrl button[aria-pressed='true'] {
+  color: var(--accent);
+}
+
+.readout {
+  color: var(--text-dim);
+  font: 11px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
+  white-space: pre;
+  text-shadow: var(--halo);
+  pointer-events: none;
+}
+
+.maplibregl-ctrl.maplibregl-ctrl-scale {
+  background: transparent;
+  border-color: var(--text-dim);
+  color: var(--text-dim);
+  text-shadow: var(--halo);
+}
+
+.maplibregl-ctrl.maplibregl-ctrl-attrib {
+  background: var(--panel);
+  color: var(--text-dim);
+}
+
+.maplibregl-ctrl-attrib a {
+  color: var(--text-dim);
+}
+
+.maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+}
