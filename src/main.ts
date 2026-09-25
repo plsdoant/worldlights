@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import './style.css'
 import { basemapStyle } from './basemap.ts'
 import { ViewControl } from './controls.ts'
+import { addWasdControls } from './keys.ts'
 import { ReadoutControl } from './readout.ts'
 import { GlobeSpin } from './spin.ts'
 import { drawStarfield } from './starfield.ts'
@@ -48,6 +49,9 @@ function createGlobe(): void {
   map.addControl(new ViewControl(spin, resetView), 'top-right')
   map.addControl(new ReadoutControl(), 'bottom-left')
   map.addControl(new ScaleControl({ maxWidth: 96 }), 'bottom-left')
+
+  addWasdControls(map)
+  map.getCanvas().focus({ preventScroll: true }) // so the keyboard works without clicking the globe first
 
   if (import.meta.env.DEV) Object.assign(window, { map }) // handy for poking at the map from devtools
 }

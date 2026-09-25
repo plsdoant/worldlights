@@ -51,12 +51,10 @@ export const basemapStyle: StyleSpecification = {
     'horizon-color': palette.horizon,
     'fog-color': palette.space,
     'sky-horizon-blend': 0.5,
-    'atmosphere-blend': 0.9,
+    // No atmosphere glow: MapLibre lights it with a sun, which puts a bright sunlit
+    // crescent on the edge of what should be a night-side globe.
+    'atmosphere-blend': 0,
   },
-  // The atmosphere shader treats this as the sun. Anchored to the viewport and placed
-  // behind the globe, it leaves the whole visible disc on the night side, with a thin
-  // sunrise crescent along the upper-left edge that stays put as the globe turns.
-  light: { anchor: 'viewport', position: [1.15, 210, 30] },
   sources: {
     // OpenFreeMap: free OpenMapTiles-schema vector tiles, no API key needed.
     [SOURCE]: { type: 'vector', url: 'https://tiles.openfreemap.org/planet' },

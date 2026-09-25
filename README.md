@@ -17,10 +17,9 @@ Then open http://localhost:5173. `npm run build` writes a static site to `dist/`
 
 | Action | How |
 | --- | --- |
-| Spin / pan | Drag |
-| Zoom | Scroll, pinch, double-click, or the `+` / `−` buttons |
-| Rotate and tilt | Right-drag or Ctrl-drag (two-finger drag on touch) |
-| Keyboard | Arrow keys pan, Shift + arrows rotate and tilt |
+| Spin / pan | Drag, or the arrow keys / `W` `A` `S` `D` |
+| Zoom | Scroll, pinch, double-click, `Q` / `E` (out / in), or the `+` / `−` buttons |
+| Rotate and tilt | Right-drag or Ctrl-drag (two-finger drag on touch), or Shift + arrow keys / `W` `A` `S` `D` |
 
 The buttons at the top right are zoom, compass (click to face north and flatten the tilt), globe ⇄ flat map, reset view, and auto-rotate. The globe turns slowly when the page loads and stops as soon as you touch it.
 
@@ -38,6 +37,7 @@ src/
   basemap.ts     the map style: palette, layers, labels, atmosphere
   spin.ts        slow auto-rotation while zoomed out
   controls.ts    reset-view and auto-rotate buttons
+  keys.ts        W/A/S/D and Q/E keyboard controls
   readout.ts     cursor coordinates and zoom level
   starfield.ts   background stars
   style.css      page and control styling
